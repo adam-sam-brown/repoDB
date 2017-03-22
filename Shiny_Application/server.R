@@ -31,24 +31,26 @@ shinyServer(function(input, output) {
     
     # Dropmenu Definition
     output$drugdrop <- renderUI({
-        selectInput(
+        selectizeInput(
             inputId = 'drugdrop',
             label = 'Select a drug from the dropdown menu, or enter a search term:',
             choices = sort(unique(drug.fr$drug_name)),
             selected = 'Sitagliptin',
             width = '100%',
-            multiple = F
+            multiple = F,
+            options = list(maxOptions = length(unique(drug.fr$drug_name)))
         )
     })
     
     output$inddrop <- renderUI({
-        selectInput(
+        selectizeInput(
             inputId = 'inddrop',
             label = 'Select an indication from the dropdown menu, or enter a search term:',
             choices = sort(unique(drug.fr$ind_name)),
             selected = 'Diabetes Mellitus, Non-Insulin-Dependent',
             width = '100%', 
-            multiple = F
+            multiple = F,
+            options = list(maxOptions = length(unique(drug.fr$ind_name)))
         )
     })
     
@@ -60,7 +62,7 @@ shinyServer(function(input, output) {
     })
     
     indreact <- reactive({
-        indtable <- subset(drug.fr, ind_name == input$inddrop & status %in% input$drugcheck & (is.na(phase) | phase %in% input$phasecheckind),
+        indtable <- subset(drug.fr, ind_name == input$inddrop & status %in% input$indcheck & (is.na(phase) | phase %in% input$phasecheckind),
                            select = c('Drug', 'Indication', 'TrialStatus','DetailedStatus'))
         return(indtable)
     })

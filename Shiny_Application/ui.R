@@ -12,6 +12,7 @@ library(DT)
 
 shinyUI(fluidPage(
     ## Header
+    tags$head(includeScript("google-analytics.js")),
     headerPanel('',
                 tags$head(
                     tags$img(src="logo.png", height="80px", width='275px', 
@@ -30,7 +31,7 @@ shinyUI(fluidPage(
             p("repoDB contains a standard set of drug repositioning successes and failures that can be
               used to fairly and reproducibly benchmark computational repositioning methods. repoDB data
               was extracted from ", 
-              a('DrugCentral', href='http://http://drugcentral.org/'),
+              a('DrugCentral', href='http://drugcentral.org/'),
               "and ",
               a('ClinicalTrials.gov.', href='http://clinicaltrials.gov')
             ),
@@ -132,9 +133,8 @@ shinyUI(fluidPage(
             ),
             tags$code(
                 "Brown AS and Patel CJ. repoDB: A New Standard for Drug Repositioning Validation.",
-                em("Journal Goes Here."),
-                strong("#:"),
-                "#-## (2016)."
+                em("Scientific Data."),
+                "In Press (2017)."
             ),
             tags$br(),
             tags$br(),
@@ -144,7 +144,9 @@ shinyUI(fluidPage(
                 "the March 27, 2016 build of the ",
                 a("AACT database,", href='https://www.ctti-clinicaltrials.org/aact-database'),
                 "and the 2016AB Release of the ",
-                a("Unified Medical Language System.", href='https://www.nlm.nih.gov/research/umls/')
+                a("Unified Medical Language System.", href='https://www.nlm.nih.gov/research/umls/'),
+                "Metformin and recycling symbol used under CC0 license from wikimedia commons. Database symbol by Designmodo,
+                used under a CC3.0 licnesne."
             ),
             p (
                 strong("By using the repoDB database, users agree to cite our work, as well as AACT,
