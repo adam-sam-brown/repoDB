@@ -46,7 +46,7 @@ clin$identifier <- sapply(clin$DRUG_MESH, function(x) {
     grepcall <- paste(greplist, collapse='|')
     row <- grep(grepcall, drugcentral$SYNONYM)
     if (length(row) == 0) out <- NA
-    else out <- paste(drugcentral$identifier[row], collapse = '|')
+    else out <- paste(unique(drugcentral$identifier[row]), collapse = '|')
 })
 
 clin <- subset(clin, !is.na(clin$identifier))
