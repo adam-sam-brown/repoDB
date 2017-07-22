@@ -1,4 +1,4 @@
-#####################################
+rm#####################################
 # assemble.R                        #
 # Prepare data for shiny app        #
 # Adam Brown                        #
@@ -60,7 +60,7 @@ for (i in 1:nrow(drugcentral)) {
     # Drug Handling
     drug <- drugcentral$name[i]
     id <- drugcentral$identifier[i]
-    drugcomp <- paste0('<a href="http://www.drugbank.ca/drugs/',id,'">',drug,' (DBID: ', id, ')</a>')
+    drugcomp <- paste0('<a href="http://www.drugbank.ca/drugs/',id,'" target="_blank">',drug,' (DBID: ', id, ')</a>')
     
     # Indication Handling
     if (is.na(drugcentral$DISEASE_MESH[i])) next
@@ -96,7 +96,7 @@ for (i in 1:nrow(clin)) {
     # Drug Handling
     drugs <- unlist(strsplit(clin$DBNAME[i],'\\|'))
     ids <- unlist(strsplit(clin$identifier[i],'\\|'))
-    drugcomp <- paste0('<a href="http://www.drugbank.ca/drugs/',ids,'">',drugs,' (DBID: ', ids, ')</a>')
+    drugcomp <- paste0('<a href="http://www.drugbank.ca/drugs/',ids,'" target="_blank">',drugs,' (DBID: ', ids, ')</a>')
     
     # Indication Handling
     inds <- unlist(strsplit(clin$DISEASE_MESH[i],'\\|'))
@@ -115,7 +115,7 @@ for (i in 1:nrow(clin)) {
                          stringsAsFactors = F)
     
     # Add status
-    dfcomp$TrialStatus <- paste0('<a href="https://clinicaltrials.gov/ct2/show/',clin$NCT_ID[i],'">',clin$OVERALL_STATUS[i], ' (',clin$PHASE[i],')</a>')
+    dfcomp$TrialStatus <- paste0('<a href="https://clinicaltrials.gov/ct2/show/',clin$NCT_ID[i],'" target="_blank">',clin$OVERALL_STATUS[i], ' (',clin$PHASE[i],')</a>')
     dfcomp$status <- clin$OVERALL_STATUS[i]
     dfcomp$phase <- clin$PHASE[i]
     dfcomp$DetailedStatus <- clin$WHY_STOPPED[i]
@@ -134,6 +134,8 @@ for (i in 1:nrow(clin)) {
 ## Combine
 drug.fr <- rbind(drug.fr, failed)
 drug.fr <- unique(drug.fr)
+drug.fr$NCT <- gsub('<a href="https://clinicaltrials.gov/ct2/show/|" target="_blank">.*|Approved','', drug.fr$TrialStatus)
+drug.fr$NCT[drug.fr$NCT == ''] <- NA
 
 ########
 # Save #
