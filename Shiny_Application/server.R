@@ -80,7 +80,7 @@ shinyServer(function(input, output) {
         filename = 'drugsearch.tsv',
         content = function(file) {
             drugtable <- subset(drug.fr, drug_name == input$drugdrop & status %in% input$drugcheck & (is.na(phase) | phase %in% input$phasecheckdrug),
-                                select = c('drug_name','drug_id','ind_name','ind_id','status','phase','DetailedStatus'))
+                                select = c('drug_name','drug_id','ind_name','ind_id','NCT','status','phase','DetailedStatus'))
             write.table(drugtable, file, sep='\t', row.names = F)
         }
     )
@@ -89,7 +89,7 @@ shinyServer(function(input, output) {
         filename = 'diseasesearch.tsv',
         content = function(file) {
             indtable <- subset(drug.fr, ind_name == input$inddrop & status %in% input$drugcheck & (is.na(phase) | phase %in% input$phasecheckdrug),
-                               select = c('drug_name','drug_id','ind_name','ind_id','status','phase','DetailedStatus'))
+                               select = c('drug_name','drug_id','ind_name','ind_id','NCT','status','phase','DetailedStatus'))
             write.table(indtable, file, sep='\t', row.names = F)
         }
     )
@@ -98,7 +98,7 @@ shinyServer(function(input, output) {
     output$downloadFull <- downloadHandler(
         filename = 'full.csv',
         content = function(file) {
-            table <- subset(drug.fr, select = c('drug_name','drug_id','ind_name','ind_id','status','phase','DetailedStatus'))
+            table <- subset(drug.fr, select = c('drug_name','drug_id','ind_name','ind_id','NCT','status','phase','DetailedStatus'))
             write.table(table, file, sep = ',', row.names = FALSE)
         }
     )
