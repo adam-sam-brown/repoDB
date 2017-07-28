@@ -160,8 +160,10 @@ shinyUI(fluidPage(
             tags$ul(
                 tags$li(strong('v1.0 (March 14, 2017)'), ' - Initial release'),
                 tags$li(strong('v1.1 (June 26, 2017)'), ' - Fixed a bug in the ClinicalTrials.gov parser that created multiple DrugBank Identifiers for a
-                        single drug (many thanks to Cristina Leal for spotting the error). NOTE: This changes the totals for Terminated
-                        Withdrawn, and Suspended drug-disease pairs from the Initial Release.')
+                        single drug (many thanks to Cristina Leal for spotting the error).'),
+                tags$li(strong('v1.2 (July 28, 2017)'), ' -', code('Version History'), ' tab was added to address discrepancies introduced in totals for Terminated
+                        Withdrawn, and Suspended drug-disease pairs versus published values due to bugfix in v1.1 (many thanks to Beste Turanli for
+                        spotting the discrepancy).')
             )
         )
     
