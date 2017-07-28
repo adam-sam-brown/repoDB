@@ -12,7 +12,6 @@ library(DT)
 
 shinyUI(fluidPage(
     ## Header
-    tags$head(includeScript("google-analytics.js")),
     headerPanel('',
                 tags$head(
                     tags$img(src="logo.png", height="80px", width='275px', 
@@ -134,7 +133,7 @@ shinyUI(fluidPage(
             tags$code(
                 "Brown AS and Patel CJ. repoDB: A New Standard for Drug Repositioning Validation.",
                 em("Scientific Data."),
-                "In Press (2017)."
+                "170029 (2017)."
             ),
             tags$br(),
             tags$br(),
@@ -154,6 +153,16 @@ shinyUI(fluidPage(
                        a('Creative Commons Attribution 4.0 International License.',href='https://creativecommons.org/licenses/by/4.0/')
                        )
             )
+        ),
+        tabPanel(
+            "Version History",
+            p("As repoDB is improved and augmented with new data, we will track any substantial changes made to repoDB here:"),
+            tags$ul(
+                tags$li(strong('v1.0 (March 14, 2017)'), ' - Initial release'),
+                tags$li(strong('v1.1 (June 26, 2017)'), ' - Fixed a bug in the ClinicalTrials.gov parser that created multiple DrugBank Identifiers for a
+                        single drug (many thanks to Cristina Leal for spotting the error). NOTE: This changes the totals for Terminated
+                        Withdrawn, and Suspended drug-disease pairs from the Initial Release.')
+            )
         )
     
         
@@ -166,9 +175,7 @@ shinyUI(fluidPage(
     p(
         strong('repoDB is intended for educational and scientific research purposes only.'),
         'This work is licensed under a ',
-        a('Creative Commons Attribution 4.0 International License.',href="http://creativecommons.org/licenses/by/4.0/"), 
-        tags$br(),
-        tags$br(),
+        a('Creative Commons Attribution 4.0 International License.',href="http://creativecommons.org/licenses/by/4.0/"),
         'repoDB was developed by AS Brown and CJ Patel. See the "Citing repoDB" tab for citation information',
         'For more projects, visit the ', a('Patel Group Homepage.', href='http://www.chiragjpgroup.org/')
     )
